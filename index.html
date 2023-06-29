@@ -1,0 +1,824 @@
+<!doctype html>
+<html amp lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <title>Hello, AMPs</title>
+    <script async custom-element="amp-video-iframe"
+        src="https://cdn.ampproject.org/v0/amp-video-iframe-0.1.js"></script>
+    <script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>
+
+    <link rel="canonical" href="https://amp.dev/documentation/examples/components/amp-carousel/index.html">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <script async src="https://cdn.ampproject.org/v0.js"> </script>
+
+    <!-- AMP Analytics -->
+    <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+
+    <!-- Amp Youtube video supporting CDN -->
+    <script async custom-element="amp-youtube" src="https://cdn.ampproject.org/v0/amp-youtube-0.1.js">
+    </script>
+
+
+    <!-- ga3 pageview  -->
+    <!-- ANALYTICS JS -->
+    <!-- UA-222679541-1 -->
+    <!-- G-CT05FG5EK2 -->
+
+    <!-- <amp-analytics type="gtag" data-credentials="include">
+        <script type="application/json">
+
+        { 
+            "vars" : {
+              "gtag_id": "UA-222679541-1",
+              "config" : {
+                "UA-222679541-1": { "groups": "default" }
+              }
+            }
+          }
+    </script>
+    </amp-analytics> -->
+
+    <!-- hide and show in amp -->
+    <script async custom-element="amp-bind" src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"></script>
+
+    <!-- accordion hide and show in amp -->
+    <script async custom-element="amp-accordion" src="https://cdn.ampproject.org/v0/amp-accordion-0.1.js"></script>
+
+    <!-- carousel -->
+    <script async custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js">
+    </script>
+
+    <!-- side bar -->
+    <script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
+
+
+    <script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
+
+
+    <!-- carousel css -->
+    <style amp-boilerplate>
+        body {
+            -webkit-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
+
+            -moz-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
+
+            -ms-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
+
+            animation: -amp-start 8s steps(1, end) 0s 1 normal both
+        }
+
+        @-webkit-keyframes -amp-start {
+            from {
+                visibility: hidden
+            }
+
+            to {
+                visibility: visible
+            }
+        }
+
+        @-moz-keyframes -amp-start {
+            from {
+                visibility: hidden
+            }
+
+            to {
+                visibility: visible
+            }
+        }
+
+        @-ms-keyframes -amp-start {
+            from {
+                visibility: hidden
+            }
+
+            to {
+                visibility: visible
+            }
+        }
+
+        @-o-keyframes -amp-start {
+            from {
+                visibility: hidden
+            }
+
+            to {
+                visibility: visible
+            }
+        }
+
+        @keyframes -amp-start {
+            from {
+                visibility: hidden
+            }
+
+            to {
+                visibility: visible
+            }
+        }
+    </style>
+    <!-- carousel css -->
+    <noscript>
+        <style amp-boilerplate>
+            body {
+                -webkit-animation: none;
+                -moz-animation: none;
+                -ms-animation: none;
+                animation: none
+            }
+        </style>
+    </noscript>
+
+    <!-- amp custom style tag -->
+    <style amp-custom>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .container {
+            background-color: aliceblue;
+            height: 200px;
+            padding-top: 20px;
+        }
+
+        h1 {
+            color: darkgoldenrod;
+        }
+
+        .left-box,
+        .right-box {
+            width: 50%;
+            float: left;
+            font-size: 15px;
+        }
+
+        .cta_click {
+            color: #ffffff;
+            background-color: red;
+            padding: 8px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            margin: 25%;
+        }
+    </style>
+
+    <style amp-custom>
+        amp-img {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 5px;
+        }
+
+        button {
+            background-color:
+                #ACAD5C;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+
+        }
+
+        .lightbox {
+            background: rgba(211, 211, 211, 0.8);
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+    <!-- lightbox -->
+    <script async custom-element="amp-lightbox" src="https://cdn.ampproject.org/v0/amp-lightbox-0.1.js"></script>
+
+
+
+</head>
+
+<body class="body">
+
+
+
+
+
+    <center>
+        <button class="btn0" on="tap:my-lightbox">
+            Show Image
+        </button>
+        <amp-lightbox id="my-lightbox" layout="nodisplay">
+            <div class="lightbox" on="tap:my-lightbox.close" tabindex="0">
+                <amp-img alt="Beautiful Flower"
+                    src="https://images.unsplash.com/photo-1659960098869-4dcaf83fa446?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80"
+                    width="300" height="300">
+                </amp-img>
+            </div>
+        </amp-lightbox>
+    </center>
+    <br>
+
+    <center>
+        <amp-youtube id="yt-player0" class="video1" width="480" height="270" data-videoid="Ft208ORSqiE">
+        </amp-youtube>
+    </center>
+
+
+    <amp-analytics type="gtag" data-credentials="include">
+        <script type="application/json">
+        {
+          "vars" : {
+            "gtag_id": "G-2Y1PP6JNH1",
+            "config" : {
+              "G-2Y1PP6JNH1": { 
+                "client_ID": "CLIENT_ID(_ga).",
+                "url": "${ampdocUrl}",
+                "title": "${title}",
+                "host_name": "AMPDOC_HOST"
+                }
+            }
+        },
+            "triggers": {
+              "button": {
+                "selector": [".Link1", ".cta_click"],
+                "on": "click",
+                "vars": {
+                  "event_name": "sidebar_click",
+                  "eventAction": "clicked",
+                  "client_ID": "CLIENT_ID(_ga).",
+                  "nextUrl": "${canonicalUrl}"
+                }
+              },
+              "scrollTracking": {
+                "on": "scroll",
+                "vars": {
+                    "event_name": "new_scroll",
+                    "percent_scrolled": "${verticalScrollBoundary}%",
+                    "eventAction": "GA4_Scrolling",
+                    "client_ID": "CLIENT_ID(_ga)."
+                },
+                "scrollSpec": {
+                    "verticalBoundaries": [25, 50, 75, 100],
+                    "horizontalBoundaries": [],
+                    "useInitialPageSize": false
+                }
+            },
+            "renderstart": 
+                    {
+                      "on": "render-start",
+                      "selector": "#adrender",
+                      "vars": 
+                      {
+                        "event_name": "ads_loaded",
+                        "eventAction": "ads-Rendering Method",
+                        "client_ID": "CLIENT_ID(_ga)."
+                        
+                      }
+                    },
+                    "videoPlayEvent": {
+                        "on": "video-play",
+                        "vars": {
+                            "event_name": "video_played",
+                            "video_autoplay1": "${autoplay}",
+                            "video_currentTime2": "${currentTime}",
+                            "video_duration3": "${duration}",
+                            "video_height4": "${height}",
+                            "video_id5": "${id}",
+                            "video_playedTotal6": "${playedTotal}",
+                            "video_state7": "${state}",
+                            "video_width8": "${width}",
+                            "client_ID": "CLIENT_ID(_ga)."
+                        },
+                        "selector": [".video", ".video1"],
+                        "videoSpec": {}
+                    },
+                    "videoPauseEvent": {
+                        "on": "video-pause",
+                        "vars": {
+                            "event_name": "video_paused",
+                            "video_autoplay1": "${autoplay}",
+                            "video_currentTime2": "${currentTime}",
+                            "video_duration3": "${duration}",
+                            "video_height4": "${height}",
+                            "video_id5": "${id}",
+                            "video_playedTotal6": "${playedTotal}",
+                            "video_state7": "${state}",
+                            "video_width8": "${width}",
+                            "client_ID": "CLIENT_ID(_ga)."
+                        },
+                        "selector": [".video", ".video1"],
+                        "videoSpec": {}
+                    },
+                    "videoEndEvent": {
+                        "on": "video-ended",
+                        "vars": {
+                            "event_name": "video_ended",
+                            "video_autoplay1": "${autoplay}",
+                            "video_currentTime2": "${currentTime}",
+                            "video_duration3": "${duration}",
+                            "video_height4": "${height}",
+                            "video_id5": "${id}",
+                            "video_playedTotal6": "${playedTotal}",
+                            "video_state7": "${state}",
+                            "video_width8": "${width}",
+                            "client_ID": "CLIENT_ID(_ga)."
+                        },
+                        "selector": [".video", ".video1"],
+                        "videoSpec": {}
+                    },
+                    "recomendationsViewed": {
+                        "on": "visible",                    
+                        "vars": {
+                            "event_name": "element_visibility",
+                            "client_ID": "CLIENT_ID(_ga)."
+                        },
+                        "selector": "#my-lightbox",
+                        "visibilitySpec": {
+                            "waitFor": "ini-load",
+                            "visiblePercentageMin": 50,
+                            "totalTimeMin": 500,
+                            "continuousTimeMin": 200
+                        }
+             
+                    },
+                    "pageLoaded": {
+                        "on": "ini-load",
+                        "vars": {
+                            "event_name": "page_is_fully_loaded",
+                            "client_ID": "CLIENT_ID(_ga).",
+                            "page_load_time": "PAGE_LOAD_TIME"
+                         }   
+                      },
+                      "pageHidden": {
+                        "on": "hidden",
+                        "selector": "body",
+                        "vars": {
+                          "event_name": "page_is_hidden",
+                          "client_ID": "CLIENT_ID(_ga)."
+                        },
+                        "visibilitySpec": {
+                          "visiblePercentageMin": 20,
+                          "totalTimeMin": 2000
+                        }
+                      },
+                     "ampCarouselChange": {
+                        "on": "amp-carousel-change",
+                        "vars": {
+                            "event_name": "carousel-change",
+                            "current_slide_number": "${toSlide}",
+                            "prev_slide_number": "${fromSlide}",
+                            "client_ID": "CLIENT_ID(_ga)."
+                            }
+                        },
+                        "pageTimer": 
+                        {    
+                            "on": "timer",    
+                            "timerSpec": 
+                            {      
+                            "interval": 10,      
+                            "maxTimerLength": 600    
+                            },    
+                            "vars": 
+                            {      
+                                "event_name": "pagetime", 
+                                "engagetime": "Engaged ${totalEngagedTime}",
+                                "url": "${ampdocUrl}"
+                            }
+                                
+                    },
+                    "virtualPageview": {
+                        "selector": ".virtual-pageview-2",
+                        "on": "click",
+                        "vars": {
+                            "event_name": "virtualPageview",
+                            "pageurl": "${ampdocUrl}/vpv/btn1",
+                            "page_location": "${ampdocUrl}/vpv/btn1",
+                            "title":"${title}",
+                            "pagepath": "${sourcePath}"
+                        }
+                    }
+      
+            }
+          }
+        </script>
+    </amp-analytics>
+
+
+
+
+    <!-- pv,click,video,ev,ad render, scroll,page loaded, -->
+
+
+
+
+
+    <!-- sample -->
+    <amp-analytics type="gtag" data-credentials="include">
+        <script type="application/json">
+          {
+            "triggers": {
+              "button": {
+                "selector": ".cta_click",
+                "on": "click",
+                "vars": {
+                  "event_name": "Welcome to GA4",
+                  "method": "Google",
+                  "timestamp": "${timestamp}",
+                  "send_to": ["G-2Y1PP6JNH12"]
+                }
+              }
+            }
+          }
+        </script>
+    </amp-analytics>
+
+
+
+
+
+
+    <!-- <amp-iframe width="500" height="281" class="amp-iframe-video" title="Netflix House of Cards branding: The Stack" layout="responsive" sandbox="allow-scripts allow-same-origin allow-popups" allowfullscreen frameborder="0" src="https://player.vimeo.com/video/140261016">
+        <amp-img layout="fill" src="https://i.vimeocdn.com/video/536538454_640.webp" placeholder></amp-img>
+      </amp-iframe> -->
+
+    <!-- 
+    <amp-iframe id="amp-iframe" title="Cute dog video" width="500" height="281" layout="responsive"
+        sandbox="allow-scripts allow-same-origin allow-popups" allowfullscreen frameborder="0"
+        src="https://player.vimeo.com/video/183849543" [src]="myIframeUrl">
+    </amp-iframe>
+    <button on="tap:AMP.setState({ myIframeUrl: 'https://player.vimeo.com/video/185199565' })">Change src</button>
+ -->
+
+
+
+
+
+    <!-- ADS Element 16-May -->
+
+
+    <br><br>
+
+    <div>
+        <a href="https://www.googleadservices.com/pagead/aclk?sa=L&amp;ai=C9fQIp2d-YuiNNJCSyAOc-r-QCIPkl4hpt8yU0b8O2tkeEAEg7YL4H2Dl0uSDqA6gAcWdn78DyAEC4AIAqAMByAMIqgT4Ak_QN7SpojrGYLp4kOdiC-w2Fo1md8AlsW5bfjKQ5TxyDGvw-Rh82z_QpMGJ_glpfLJV64Tirid6wPP4tzGzuXLooUEj9LLfzeOdzlkWIRiwWRuYrbph_EQlAUT6Bq8sx1PcQXQuW4hEUcwKwLw9mb6IbdeQM3-97IaX3ObtlTBxy4Dck8frBAXb2OSCUGTuHmfkPyZe9_t0kHmdy0DCjQGTgy1W1POE4NaTQv2A-NLQS1BPEt9OFZ7PM54aHcvklguyqtNE6-g9CcX_nsmVew2tv_sqhHUD7XqZb_OXtnE2WnIUEH7cOLbDss0fl7m8lbCyQs_v5Er7uqHRQCu-HNu8Ybrn-wEXiyG3vaGRwKJMb3h5CtXAtmFbrqRtKkydnkIsoeEtTcka-RPD6yHWjBsB4caIBenXfTNveIsjexlB9yjscgKCUAQ3RGHZszPs7XhrLWkFRa3qPIym0maomncMczGLr_9YfKCVHyd9arxmRFh2BebuIBHABJu9rZzYA-AEAaAGAoAHo-LgQKgHjs4bqAeT2BuoB-6WsQKoB_6esQKoB6SjsQKoB9XJG6gHpr4bqAfz0RuoB5bYG6gHqpuxAqgH35-xAtgHAdIIBwiAYRABGB2xCYTQqgOewNJ8gAoDigrKAWh0dHBzOi8vaW8uY2xpY2tndWFyZC5jb20vdC9jSEp2ZEdWamRHOXkvOXVwRGtBM0U_Y2c9dHJhY2sma3c9Jm53PWQmY3A9MTEyMzMzNjE0NjkmYWc9MTI2NzYxMDAwNjAzJmFkPTU0NzE3ODAyOTM0OSZrZD1hdWQtODQ5NjQ2ODg4MDEyJmR2PWMmbXQ9JnBsPXd3dy5idXNpbmVzc2luc2lkZXIuaW4mcmQ9Njc4NTEwMTI1NTgxNTA1MzA1JnRnPXtscHVybH2YCwHICwHgCwG4DAHYEw3QFQGYFgH4FgGAFwE&amp;ae=1&amp;num=1&amp;cid=CAASJORoDxxZ5TdRQwyfib2OEMYaSxM5FIRhKErlLPkcpqHoGomNhw&amp;sig=AOD64_29PJhzQIGNiSYDW69cKGcz-5sKLQ&amp;client=ca-pub-2230723027927371&amp;nx=CLICK_X&amp;ny=CLICK_Y&amp;nb=2&amp;adurl=https://www.moengage.com/casestudy/gaana-case-study/%3Futm_source%3Dgoogle%26utm_medium%3Dpaid%26utm_campaign%3Dgd-india-rm-demo-li%26campaignid%3D11233361469%26adgroupid%3D126761000603%26adid%3D547178029349%26utm_campaign%3DGD-India-RM-Demo-LI%26utm_source%3Dadwords%26utm_term%3D%26utm_medium%3Dcpc%26hsa_net%3Dadwords%26hsa_mt%3D%26hsa_ver%3D3%26hsa_kw%3D%26hsa_ad%3D547178029349%26hsa_src%3Dd%26hsa_grp%3D126761000603%26hsa_cam%3D11233361469%26hsa_tgt%3Daud-849646888012%26hsa_acc%3D7352429802%26gclid%3DEAIaIQobChMIqP2jydTc9wIVEAlyCh0c_Q-CEAEYASAAEgLbKvD_BwE"
+            id="aw0" on="tap:exit-api.exit(target='landingPage',_googClickLocation='2')" target="_blank">
+            <amp-img alt=""
+                class="img_ad ads i-amphtml-layout-fixed i-amphtml-layout-size-defined i-amphtml-element i-amphtml-built i-amphtml-layout"
+                id="ads" height="280" i-amphtml-layout="fixed" i-amphtml-ssr=""
+                src="https://tpc.googlesyndication.com/simgad/3622723841736656957?sqp=4sqPyQQrQikqJwhfEAEdAAC0QiABKAEwCTgDQPCTCUgAUAFYAWBfcAJ4AcUBLbKdPg&amp;rs=AOga4ql3_U8pu1JsK9utsQh5W4vq12z1Uw"
+                style="width:336px;height:280px;" width="336"><img alt=""
+                    class="i-amphtml-fill-content i-amphtml-replaced-content ads" id="ads" decoding="async"
+                    src="https://tpc.googlesyndication.com/simgad/3622723841736656957?sqp=4sqPyQQrQikqJwhfEAEdAAC0QiABKAEwCTgDQPCTCUgAUAFYAWBfcAJ4AcUBLbKdPg&amp;rs=AOga4ql3_U8pu1JsK9utsQh5W4vq12z1Uw">
+            </amp-img>
+        </a>
+    </div>
+
+    <br><br>
+
+    <amp-carousel width="400" height="300" layout="responsive" type="slides" autoplay delay="3000">
+        <amp-img src="https://media.geeksforgeeks.org/wp-content/uploads/geeksforgeeks-9.png" width="400" height="300"
+            layout="responsive">
+        </amp-img>
+
+        <amp-img src="https://media.geeksforgeeks.org/wp-content/uploads/20190918234528/colorize1.png" width="400"
+            height="300" layout="responsive">
+        </amp-img>
+
+        <amp-img src="https://media.geeksforgeeks.org/wp-content/uploads/20190918234815/colorize2.png" width="200"
+            height="100" layout="responsive">
+        </amp-img>
+    </amp-carousel>
+
+
+    <h1 id="hello">Hello AMP HTML World!</h1>
+    <div class="containetr">
+        <div class="left-box">
+            left-box content
+        </div>
+        <div class="right-box">
+            right-box content
+        </div>
+
+        <!-- amp img tag  -->
+        <!-- <amp-img height="200" width="300"
+            src="https://images.unsplash.com/photo-1502759683299-cdcd6974244f?auto=format&fit=crop&w=440&h=220&q=60">
+        </amp-img> -->
+
+
+        <br><br>
+        <div class="cta">
+            <a on="tap:sidebar1" class="cta_click">sidebar menu </a>
+        </div>
+    </div>
+
+
+    <!-- side bar -->
+    <amp-sidebar id="sidebar1" layout="nodisplay" style="width:300px">
+        <amp-nested-menu layout="fill">
+            <ul>
+                <li>
+                    <h4 amp-nested-submenu-open>Open Sub-Menu</h4>
+                    <div amp-nested-submenu>
+                        <ul>
+                            <li>
+                                <h4 amp-nested-submenu-close>Go back</h4>
+                            </li>
+                            <li>
+                                <h4 amp-nested-submenu-open>Open Another Sub-Menu</h4>
+                                <div amp-nested-submenu>
+                                    <h4 amp-nested-submenu-close>Go back</h4>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a href="https://gtmanalytics-634b6.web.app/" class="Link1">Link1</a>
+                </li>
+                <li>
+                    <a href="#">Link2</a>
+                </li>
+                <li>
+                    <a href="#">Link3</a>
+                </li>
+                <li>
+                    <a href="#" id="the-button">Link4</a>
+                </li>
+                <li>
+                    <a href="#" class="virtual-pageview-2">Link5</a>
+                </li>
+            </ul>
+        </amp-nested-menu>
+    </amp-sidebar>
+
+    <br>
+    <!-- hide and show in amp -->
+    <div id="hidee">Hello World</div>
+    <button on="tap:hidee.toggleVisibility">Show greeting</button>
+
+
+    <br>
+    <!-- accordion in amp -->
+    <amp-accordion class="sample">
+        <section expanded>
+            <h4>Section 1</h4>
+            <p>Bunch of awesome content.</p>
+        </section>
+        <section>
+            <h4>Section 2</h4>
+            <div>Bunch of even more awesome content. This time in a <code><div></code>.</div>
+        </section>
+        <section>
+            <h4>Section 3</h4>
+            <figure>
+                <amp-img
+                    src="https://images.unsplash.com/photo-1502759683299-cdcd6974244f?auto=format&fit=crop&w=440&h=220&q=60"
+                    width="450" height="300"></amp-img>
+                <figcaption>Images work as well.</figcaption>
+            </figure>
+        </section>
+    </amp-accordion>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Youtube video -->
+    <br> <br>
+    <center>
+        <amp-youtube id="yt-player0123" class="video" width="480" height="270" data-videoid="Ft208ORSqiE">
+        </amp-youtube>
+    </center>
+    <br> <br>
+
+    <!-- ADS Element -->
+    <br><br>
+
+    <div>
+        <a href="https://www.googleadservices.com/pagead/aclk?sa=L&amp;ai=C9fQIp2d-YuiNNJCSyAOc-r-QCIPkl4hpt8yU0b8O2tkeEAEg7YL4H2Dl0uSDqA6gAcWdn78DyAEC4AIAqAMByAMIqgT4Ak_QN7SpojrGYLp4kOdiC-w2Fo1md8AlsW5bfjKQ5TxyDGvw-Rh82z_QpMGJ_glpfLJV64Tirid6wPP4tzGzuXLooUEj9LLfzeOdzlkWIRiwWRuYrbph_EQlAUT6Bq8sx1PcQXQuW4hEUcwKwLw9mb6IbdeQM3-97IaX3ObtlTBxy4Dck8frBAXb2OSCUGTuHmfkPyZe9_t0kHmdy0DCjQGTgy1W1POE4NaTQv2A-NLQS1BPEt9OFZ7PM54aHcvklguyqtNE6-g9CcX_nsmVew2tv_sqhHUD7XqZb_OXtnE2WnIUEH7cOLbDss0fl7m8lbCyQs_v5Er7uqHRQCu-HNu8Ybrn-wEXiyG3vaGRwKJMb3h5CtXAtmFbrqRtKkydnkIsoeEtTcka-RPD6yHWjBsB4caIBenXfTNveIsjexlB9yjscgKCUAQ3RGHZszPs7XhrLWkFRa3qPIym0maomncMczGLr_9YfKCVHyd9arxmRFh2BebuIBHABJu9rZzYA-AEAaAGAoAHo-LgQKgHjs4bqAeT2BuoB-6WsQKoB_6esQKoB6SjsQKoB9XJG6gHpr4bqAfz0RuoB5bYG6gHqpuxAqgH35-xAtgHAdIIBwiAYRABGB2xCYTQqgOewNJ8gAoDigrKAWh0dHBzOi8vaW8uY2xpY2tndWFyZC5jb20vdC9jSEp2ZEdWamRHOXkvOXVwRGtBM0U_Y2c9dHJhY2sma3c9Jm53PWQmY3A9MTEyMzMzNjE0NjkmYWc9MTI2NzYxMDAwNjAzJmFkPTU0NzE3ODAyOTM0OSZrZD1hdWQtODQ5NjQ2ODg4MDEyJmR2PWMmbXQ9JnBsPXd3dy5idXNpbmVzc2luc2lkZXIuaW4mcmQ9Njc4NTEwMTI1NTgxNTA1MzA1JnRnPXtscHVybH2YCwHICwHgCwG4DAHYEw3QFQGYFgH4FgGAFwE&amp;ae=1&amp;num=1&amp;cid=CAASJORoDxxZ5TdRQwyfib2OEMYaSxM5FIRhKErlLPkcpqHoGomNhw&amp;sig=AOD64_29PJhzQIGNiSYDW69cKGcz-5sKLQ&amp;client=ca-pub-2230723027927371&amp;nx=CLICK_X&amp;ny=CLICK_Y&amp;nb=2&amp;adurl=https://www.moengage.com/casestudy/gaana-case-study/%3Futm_source%3Dgoogle%26utm_medium%3Dpaid%26utm_campaign%3Dgd-india-rm-demo-li%26campaignid%3D11233361469%26adgroupid%3D126761000603%26adid%3D547178029349%26utm_campaign%3DGD-India-RM-Demo-LI%26utm_source%3Dadwords%26utm_term%3D%26utm_medium%3Dcpc%26hsa_net%3Dadwords%26hsa_mt%3D%26hsa_ver%3D3%26hsa_kw%3D%26hsa_ad%3D547178029349%26hsa_src%3Dd%26hsa_grp%3D126761000603%26hsa_cam%3D11233361469%26hsa_tgt%3Daud-849646888012%26hsa_acc%3D7352429802%26gclid%3DEAIaIQobChMIqP2jydTc9wIVEAlyCh0c_Q-CEAEYASAAEgLbKvD_BwE"
+            id="aw0" on="tap:exit-api.exit(target='landingPage',_googClickLocation='2')" target="_blank">
+            <amp-img alt=""
+                class="img_ad ads i-amphtml-layout-fixed i-amphtml-layout-size-defined i-amphtml-element i-amphtml-built i-amphtml-layout"
+                id="ads" height="280" i-amphtml-layout="fixed" i-amphtml-ssr=""
+                src="https://tpc.googlesyndication.com/simgad/3622723841736656957?sqp=4sqPyQQrQikqJwhfEAEdAAC0QiABKAEwCTgDQPCTCUgAUAFYAWBfcAJ4AcUBLbKdPg&amp;rs=AOga4ql3_U8pu1JsK9utsQh5W4vq12z1Uw"
+                style="width:336px;height:280px;" width="336"><img alt=""
+                    class="i-amphtml-fill-content i-amphtml-replaced-content ads" id="ads" decoding="async"
+                    src="https://tpc.googlesyndication.com/simgad/3622723841736656957?sqp=4sqPyQQrQikqJwhfEAEdAAC0QiABKAEwCTgDQPCTCUgAUAFYAWBfcAJ4AcUBLbKdPg&amp;rs=AOga4ql3_U8pu1JsK9utsQh5W4vq12z1Uw">
+            </amp-img>
+        </a>
+    </div>
+
+    <br><br>
+
+
+    <!-- .formPopup -->
+
+
+
+    <!-- ADS Element -->
+    <br><br>
+
+    <div>
+        <a href="https://www.googleadservices.com/pagead/aclk?sa=L&amp;ai=C9fQIp2d-YuiNNJCSyAOc-r-QCIPkl4hpt8yU0b8O2tkeEAEg7YL4H2Dl0uSDqA6gAcWdn78DyAEC4AIAqAMByAMIqgT4Ak_QN7SpojrGYLp4kOdiC-w2Fo1md8AlsW5bfjKQ5TxyDGvw-Rh82z_QpMGJ_glpfLJV64Tirid6wPP4tzGzuXLooUEj9LLfzeOdzlkWIRiwWRuYrbph_EQlAUT6Bq8sx1PcQXQuW4hEUcwKwLw9mb6IbdeQM3-97IaX3ObtlTBxy4Dck8frBAXb2OSCUGTuHmfkPyZe9_t0kHmdy0DCjQGTgy1W1POE4NaTQv2A-NLQS1BPEt9OFZ7PM54aHcvklguyqtNE6-g9CcX_nsmVew2tv_sqhHUD7XqZb_OXtnE2WnIUEH7cOLbDss0fl7m8lbCyQs_v5Er7uqHRQCu-HNu8Ybrn-wEXiyG3vaGRwKJMb3h5CtXAtmFbrqRtKkydnkIsoeEtTcka-RPD6yHWjBsB4caIBenXfTNveIsjexlB9yjscgKCUAQ3RGHZszPs7XhrLWkFRa3qPIym0maomncMczGLr_9YfKCVHyd9arxmRFh2BebuIBHABJu9rZzYA-AEAaAGAoAHo-LgQKgHjs4bqAeT2BuoB-6WsQKoB_6esQKoB6SjsQKoB9XJG6gHpr4bqAfz0RuoB5bYG6gHqpuxAqgH35-xAtgHAdIIBwiAYRABGB2xCYTQqgOewNJ8gAoDigrKAWh0dHBzOi8vaW8uY2xpY2tndWFyZC5jb20vdC9jSEp2ZEdWamRHOXkvOXVwRGtBM0U_Y2c9dHJhY2sma3c9Jm53PWQmY3A9MTEyMzMzNjE0NjkmYWc9MTI2NzYxMDAwNjAzJmFkPTU0NzE3ODAyOTM0OSZrZD1hdWQtODQ5NjQ2ODg4MDEyJmR2PWMmbXQ9JnBsPXd3dy5idXNpbmVzc2luc2lkZXIuaW4mcmQ9Njc4NTEwMTI1NTgxNTA1MzA1JnRnPXtscHVybH2YCwHICwHgCwG4DAHYEw3QFQGYFgH4FgGAFwE&amp;ae=1&amp;num=1&amp;cid=CAASJORoDxxZ5TdRQwyfib2OEMYaSxM5FIRhKErlLPkcpqHoGomNhw&amp;sig=AOD64_29PJhzQIGNiSYDW69cKGcz-5sKLQ&amp;client=ca-pub-2230723027927371&amp;nx=CLICK_X&amp;ny=CLICK_Y&amp;nb=2&amp;adurl=https://www.moengage.com/casestudy/gaana-case-study/%3Futm_source%3Dgoogle%26utm_medium%3Dpaid%26utm_campaign%3Dgd-india-rm-demo-li%26campaignid%3D11233361469%26adgroupid%3D126761000603%26adid%3D547178029349%26utm_campaign%3DGD-India-RM-Demo-LI%26utm_source%3Dadwords%26utm_term%3D%26utm_medium%3Dcpc%26hsa_net%3Dadwords%26hsa_mt%3D%26hsa_ver%3D3%26hsa_kw%3D%26hsa_ad%3D547178029349%26hsa_src%3Dd%26hsa_grp%3D126761000603%26hsa_cam%3D11233361469%26hsa_tgt%3Daud-849646888012%26hsa_acc%3D7352429802%26gclid%3DEAIaIQobChMIqP2jydTc9wIVEAlyCh0c_Q-CEAEYASAAEgLbKvD_BwE"
+            id="aw0" on="tap:exit-api.exit(target='landingPage',_googClickLocation='2')" target="_blank">
+            <amp-img alt=""
+                class="img_ad ads i-amphtml-layout-fixed i-amphtml-layout-size-defined i-amphtml-element i-amphtml-built i-amphtml-layout"
+                id="ads" height="280" i-amphtml-layout="fixed" i-amphtml-ssr=""
+                src="https://tpc.googlesyndication.com/simgad/3622723841736656957?sqp=4sqPyQQrQikqJwhfEAEdAAC0QiABKAEwCTgDQPCTCUgAUAFYAWBfcAJ4AcUBLbKdPg&amp;rs=AOga4ql3_U8pu1JsK9utsQh5W4vq12z1Uw"
+                style="width:336px;height:280px;" width="336"><img alt=""
+                    class="i-amphtml-fill-content i-amphtml-replaced-content ads" id="ads" decoding="async"
+                    src="https://tpc.googlesyndication.com/simgad/3622723841736656957?sqp=4sqPyQQrQikqJwhfEAEdAAC0QiABKAEwCTgDQPCTCUgAUAFYAWBfcAJ4AcUBLbKdPg&amp;rs=AOga4ql3_U8pu1JsK9utsQh5W4vq12z1Uw">
+            </amp-img>
+        </a>
+    </div>
+
+    <br><br>
+
+
+
+    <!-- ADS Element -->
+    <br><br>
+
+    <div>
+        <a href="https://www.googleadservices.com/pagead/aclk?sa=L&amp;ai=C9fQIp2d-YuiNNJCSyAOc-r-QCIPkl4hpt8yU0b8O2tkeEAEg7YL4H2Dl0uSDqA6gAcWdn78DyAEC4AIAqAMByAMIqgT4Ak_QN7SpojrGYLp4kOdiC-w2Fo1md8AlsW5bfjKQ5TxyDGvw-Rh82z_QpMGJ_glpfLJV64Tirid6wPP4tzGzuXLooUEj9LLfzeOdzlkWIRiwWRuYrbph_EQlAUT6Bq8sx1PcQXQuW4hEUcwKwLw9mb6IbdeQM3-97IaX3ObtlTBxy4Dck8frBAXb2OSCUGTuHmfkPyZe9_t0kHmdy0DCjQGTgy1W1POE4NaTQv2A-NLQS1BPEt9OFZ7PM54aHcvklguyqtNE6-g9CcX_nsmVew2tv_sqhHUD7XqZb_OXtnE2WnIUEH7cOLbDss0fl7m8lbCyQs_v5Er7uqHRQCu-HNu8Ybrn-wEXiyG3vaGRwKJMb3h5CtXAtmFbrqRtKkydnkIsoeEtTcka-RPD6yHWjBsB4caIBenXfTNveIsjexlB9yjscgKCUAQ3RGHZszPs7XhrLWkFRa3qPIym0maomncMczGLr_9YfKCVHyd9arxmRFh2BebuIBHABJu9rZzYA-AEAaAGAoAHo-LgQKgHjs4bqAeT2BuoB-6WsQKoB_6esQKoB6SjsQKoB9XJG6gHpr4bqAfz0RuoB5bYG6gHqpuxAqgH35-xAtgHAdIIBwiAYRABGB2xCYTQqgOewNJ8gAoDigrKAWh0dHBzOi8vaW8uY2xpY2tndWFyZC5jb20vdC9jSEp2ZEdWamRHOXkvOXVwRGtBM0U_Y2c9dHJhY2sma3c9Jm53PWQmY3A9MTEyMzMzNjE0NjkmYWc9MTI2NzYxMDAwNjAzJmFkPTU0NzE3ODAyOTM0OSZrZD1hdWQtODQ5NjQ2ODg4MDEyJmR2PWMmbXQ9JnBsPXd3dy5idXNpbmVzc2luc2lkZXIuaW4mcmQ9Njc4NTEwMTI1NTgxNTA1MzA1JnRnPXtscHVybH2YCwHICwHgCwG4DAHYEw3QFQGYFgH4FgGAFwE&amp;ae=1&amp;num=1&amp;cid=CAASJORoDxxZ5TdRQwyfib2OEMYaSxM5FIRhKErlLPkcpqHoGomNhw&amp;sig=AOD64_29PJhzQIGNiSYDW69cKGcz-5sKLQ&amp;client=ca-pub-2230723027927371&amp;nx=CLICK_X&amp;ny=CLICK_Y&amp;nb=2&amp;adurl=https://www.moengage.com/casestudy/gaana-case-study/%3Futm_source%3Dgoogle%26utm_medium%3Dpaid%26utm_campaign%3Dgd-india-rm-demo-li%26campaignid%3D11233361469%26adgroupid%3D126761000603%26adid%3D547178029349%26utm_campaign%3DGD-India-RM-Demo-LI%26utm_source%3Dadwords%26utm_term%3D%26utm_medium%3Dcpc%26hsa_net%3Dadwords%26hsa_mt%3D%26hsa_ver%3D3%26hsa_kw%3D%26hsa_ad%3D547178029349%26hsa_src%3Dd%26hsa_grp%3D126761000603%26hsa_cam%3D11233361469%26hsa_tgt%3Daud-849646888012%26hsa_acc%3D7352429802%26gclid%3DEAIaIQobChMIqP2jydTc9wIVEAlyCh0c_Q-CEAEYASAAEgLbKvD_BwE"
+            id="aw0" on="tap:exit-api.exit(target='landingPage',_googClickLocation='2')" target="_blank">
+            <amp-img alt=""
+                class="img_ad ads i-amphtml-layout-fixed i-amphtml-layout-size-defined i-amphtml-element i-amphtml-built i-amphtml-layout"
+                id="ads" height="280" i-amphtml-layout="fixed" i-amphtml-ssr=""
+                src="https://tpc.googlesyndication.com/simgad/3622723841736656957?sqp=4sqPyQQrQikqJwhfEAEdAAC0QiABKAEwCTgDQPCTCUgAUAFYAWBfcAJ4AcUBLbKdPg&amp;rs=AOga4ql3_U8pu1JsK9utsQh5W4vq12z1Uw"
+                style="width:336px;height:280px;" width="336"><img alt=""
+                    class="i-amphtml-fill-content i-amphtml-replaced-content ads" id="ads" decoding="async"
+                    src="https://tpc.googlesyndication.com/simgad/3622723841736656957?sqp=4sqPyQQrQikqJwhfEAEdAAC0QiABKAEwCTgDQPCTCUgAUAFYAWBfcAJ4AcUBLbKdPg&amp;rs=AOga4ql3_U8pu1JsK9utsQh5W4vq12z1Uw">
+            </amp-img>
+        </a>
+    </div>
+
+    <br><br>
+
+
+    <!-- ADS Element -->
+    <br><br>
+
+    <div>
+        <a href="https://www.googleadservices.com/pagead/aclk?sa=L&amp;ai=C9fQIp2d-YuiNNJCSyAOc-r-QCIPkl4hpt8yU0b8O2tkeEAEg7YL4H2Dl0uSDqA6gAcWdn78DyAEC4AIAqAMByAMIqgT4Ak_QN7SpojrGYLp4kOdiC-w2Fo1md8AlsW5bfjKQ5TxyDGvw-Rh82z_QpMGJ_glpfLJV64Tirid6wPP4tzGzuXLooUEj9LLfzeOdzlkWIRiwWRuYrbph_EQlAUT6Bq8sx1PcQXQuW4hEUcwKwLw9mb6IbdeQM3-97IaX3ObtlTBxy4Dck8frBAXb2OSCUGTuHmfkPyZe9_t0kHmdy0DCjQGTgy1W1POE4NaTQv2A-NLQS1BPEt9OFZ7PM54aHcvklguyqtNE6-g9CcX_nsmVew2tv_sqhHUD7XqZb_OXtnE2WnIUEH7cOLbDss0fl7m8lbCyQs_v5Er7uqHRQCu-HNu8Ybrn-wEXiyG3vaGRwKJMb3h5CtXAtmFbrqRtKkydnkIsoeEtTcka-RPD6yHWjBsB4caIBenXfTNveIsjexlB9yjscgKCUAQ3RGHZszPs7XhrLWkFRa3qPIym0maomncMczGLr_9YfKCVHyd9arxmRFh2BebuIBHABJu9rZzYA-AEAaAGAoAHo-LgQKgHjs4bqAeT2BuoB-6WsQKoB_6esQKoB6SjsQKoB9XJG6gHpr4bqAfz0RuoB5bYG6gHqpuxAqgH35-xAtgHAdIIBwiAYRABGB2xCYTQqgOewNJ8gAoDigrKAWh0dHBzOi8vaW8uY2xpY2tndWFyZC5jb20vdC9jSEp2ZEdWamRHOXkvOXVwRGtBM0U_Y2c9dHJhY2sma3c9Jm53PWQmY3A9MTEyMzMzNjE0NjkmYWc9MTI2NzYxMDAwNjAzJmFkPTU0NzE3ODAyOTM0OSZrZD1hdWQtODQ5NjQ2ODg4MDEyJmR2PWMmbXQ9JnBsPXd3dy5idXNpbmVzc2luc2lkZXIuaW4mcmQ9Njc4NTEwMTI1NTgxNTA1MzA1JnRnPXtscHVybH2YCwHICwHgCwG4DAHYEw3QFQGYFgH4FgGAFwE&amp;ae=1&amp;num=1&amp;cid=CAASJORoDxxZ5TdRQwyfib2OEMYaSxM5FIRhKErlLPkcpqHoGomNhw&amp;sig=AOD64_29PJhzQIGNiSYDW69cKGcz-5sKLQ&amp;client=ca-pub-2230723027927371&amp;nx=CLICK_X&amp;ny=CLICK_Y&amp;nb=2&amp;adurl=https://www.moengage.com/casestudy/gaana-case-study/%3Futm_source%3Dgoogle%26utm_medium%3Dpaid%26utm_campaign%3Dgd-india-rm-demo-li%26campaignid%3D11233361469%26adgroupid%3D126761000603%26adid%3D547178029349%26utm_campaign%3DGD-India-RM-Demo-LI%26utm_source%3Dadwords%26utm_term%3D%26utm_medium%3Dcpc%26hsa_net%3Dadwords%26hsa_mt%3D%26hsa_ver%3D3%26hsa_kw%3D%26hsa_ad%3D547178029349%26hsa_src%3Dd%26hsa_grp%3D126761000603%26hsa_cam%3D11233361469%26hsa_tgt%3Daud-849646888012%26hsa_acc%3D7352429802%26gclid%3DEAIaIQobChMIqP2jydTc9wIVEAlyCh0c_Q-CEAEYASAAEgLbKvD_BwE"
+            id="aw0" on="tap:exit-api.exit(target='landingPage',_googClickLocation='2')" target="_blank">
+            <amp-img alt=""
+                class="img_ad ads i-amphtml-layout-fixed i-amphtml-layout-size-defined i-amphtml-element i-amphtml-built i-amphtml-layout"
+                id="ads" height="280" i-amphtml-layout="fixed" i-amphtml-ssr=""
+                src="https://tpc.googlesyndication.com/simgad/3622723841736656957?sqp=4sqPyQQrQikqJwhfEAEdAAC0QiABKAEwCTgDQPCTCUgAUAFYAWBfcAJ4AcUBLbKdPg&amp;rs=AOga4ql3_U8pu1JsK9utsQh5W4vq12z1Uw"
+                style="width:336px;height:280px;" width="336"><img alt=""
+                    class="i-amphtml-fill-content i-amphtml-replaced-content ads" id="ads" decoding="async"
+                    src="https://tpc.googlesyndication.com/simgad/3622723841736656957?sqp=4sqPyQQrQikqJwhfEAEdAAC0QiABKAEwCTgDQPCTCUgAUAFYAWBfcAJ4AcUBLbKdPg&amp;rs=AOga4ql3_U8pu1JsK9utsQh5W4vq12z1Uw">
+            </amp-img>
+        </a>
+    </div>
+
+    <br><br>
+
+    <!-- ADS Element -->
+    <br><br>
+
+    <div>
+        <a href="https://www.googleadservices.com/pagead/aclk?sa=L&amp;ai=C9fQIp2d-YuiNNJCSyAOc-r-QCIPkl4hpt8yU0b8O2tkeEAEg7YL4H2Dl0uSDqA6gAcWdn78DyAEC4AIAqAMByAMIqgT4Ak_QN7SpojrGYLp4kOdiC-w2Fo1md8AlsW5bfjKQ5TxyDGvw-Rh82z_QpMGJ_glpfLJV64Tirid6wPP4tzGzuXLooUEj9LLfzeOdzlkWIRiwWRuYrbph_EQlAUT6Bq8sx1PcQXQuW4hEUcwKwLw9mb6IbdeQM3-97IaX3ObtlTBxy4Dck8frBAXb2OSCUGTuHmfkPyZe9_t0kHmdy0DCjQGTgy1W1POE4NaTQv2A-NLQS1BPEt9OFZ7PM54aHcvklguyqtNE6-g9CcX_nsmVew2tv_sqhHUD7XqZb_OXtnE2WnIUEH7cOLbDss0fl7m8lbCyQs_v5Er7uqHRQCu-HNu8Ybrn-wEXiyG3vaGRwKJMb3h5CtXAtmFbrqRtKkydnkIsoeEtTcka-RPD6yHWjBsB4caIBenXfTNveIsjexlB9yjscgKCUAQ3RGHZszPs7XhrLWkFRa3qPIym0maomncMczGLr_9YfKCVHyd9arxmRFh2BebuIBHABJu9rZzYA-AEAaAGAoAHo-LgQKgHjs4bqAeT2BuoB-6WsQKoB_6esQKoB6SjsQKoB9XJG6gHpr4bqAfz0RuoB5bYG6gHqpuxAqgH35-xAtgHAdIIBwiAYRABGB2xCYTQqgOewNJ8gAoDigrKAWh0dHBzOi8vaW8uY2xpY2tndWFyZC5jb20vdC9jSEp2ZEdWamRHOXkvOXVwRGtBM0U_Y2c9dHJhY2sma3c9Jm53PWQmY3A9MTEyMzMzNjE0NjkmYWc9MTI2NzYxMDAwNjAzJmFkPTU0NzE3ODAyOTM0OSZrZD1hdWQtODQ5NjQ2ODg4MDEyJmR2PWMmbXQ9JnBsPXd3dy5idXNpbmVzc2luc2lkZXIuaW4mcmQ9Njc4NTEwMTI1NTgxNTA1MzA1JnRnPXtscHVybH2YCwHICwHgCwG4DAHYEw3QFQGYFgH4FgGAFwE&amp;ae=1&amp;num=1&amp;cid=CAASJORoDxxZ5TdRQwyfib2OEMYaSxM5FIRhKErlLPkcpqHoGomNhw&amp;sig=AOD64_29PJhzQIGNiSYDW69cKGcz-5sKLQ&amp;client=ca-pub-2230723027927371&amp;nx=CLICK_X&amp;ny=CLICK_Y&amp;nb=2&amp;adurl=https://www.moengage.com/casestudy/gaana-case-study/%3Futm_source%3Dgoogle%26utm_medium%3Dpaid%26utm_campaign%3Dgd-india-rm-demo-li%26campaignid%3D11233361469%26adgroupid%3D126761000603%26adid%3D547178029349%26utm_campaign%3DGD-India-RM-Demo-LI%26utm_source%3Dadwords%26utm_term%3D%26utm_medium%3Dcpc%26hsa_net%3Dadwords%26hsa_mt%3D%26hsa_ver%3D3%26hsa_kw%3D%26hsa_ad%3D547178029349%26hsa_src%3Dd%26hsa_grp%3D126761000603%26hsa_cam%3D11233361469%26hsa_tgt%3Daud-849646888012%26hsa_acc%3D7352429802%26gclid%3DEAIaIQobChMIqP2jydTc9wIVEAlyCh0c_Q-CEAEYASAAEgLbKvD_BwE"
+            id="aw0" on="tap:exit-api.exit(target='landingPage',_googClickLocation='2')" target="_blank">
+            <amp-img alt=""
+                class="img_ad ads i-amphtml-layout-fixed i-amphtml-layout-size-defined i-amphtml-element i-amphtml-built i-amphtml-layout"
+                id="ads" height="280" i-amphtml-layout="fixed" i-amphtml-ssr=""
+                src="https://tpc.googlesyndication.com/simgad/3622723841736656957?sqp=4sqPyQQrQikqJwhfEAEdAAC0QiABKAEwCTgDQPCTCUgAUAFYAWBfcAJ4AcUBLbKdPg&amp;rs=AOga4ql3_U8pu1JsK9utsQh5W4vq12z1Uw"
+                style="width:336px;height:280px;" width="336"><img alt=""
+                    class="i-amphtml-fill-content i-amphtml-replaced-content ads" id="ads" decoding="async"
+                    src="https://tpc.googlesyndication.com/simgad/3622723841736656957?sqp=4sqPyQQrQikqJwhfEAEdAAC0QiABKAEwCTgDQPCTCUgAUAFYAWBfcAJ4AcUBLbKdPg&amp;rs=AOga4ql3_U8pu1JsK9utsQh5W4vq12z1Uw">
+            </amp-img>
+        </a>
+    </div>
+
+    <br><br>
+
+
+    <!-- ADS Element -->
+    <br><br>
+
+    <div>
+        <a href="https://www.googleadservices.com/pagead/aclk?sa=L&amp;ai=C9fQIp2d-YuiNNJCSyAOc-r-QCIPkl4hpt8yU0b8O2tkeEAEg7YL4H2Dl0uSDqA6gAcWdn78DyAEC4AIAqAMByAMIqgT4Ak_QN7SpojrGYLp4kOdiC-w2Fo1md8AlsW5bfjKQ5TxyDGvw-Rh82z_QpMGJ_glpfLJV64Tirid6wPP4tzGzuXLooUEj9LLfzeOdzlkWIRiwWRuYrbph_EQlAUT6Bq8sx1PcQXQuW4hEUcwKwLw9mb6IbdeQM3-97IaX3ObtlTBxy4Dck8frBAXb2OSCUGTuHmfkPyZe9_t0kHmdy0DCjQGTgy1W1POE4NaTQv2A-NLQS1BPEt9OFZ7PM54aHcvklguyqtNE6-g9CcX_nsmVew2tv_sqhHUD7XqZb_OXtnE2WnIUEH7cOLbDss0fl7m8lbCyQs_v5Er7uqHRQCu-HNu8Ybrn-wEXiyG3vaGRwKJMb3h5CtXAtmFbrqRtKkydnkIsoeEtTcka-RPD6yHWjBsB4caIBenXfTNveIsjexlB9yjscgKCUAQ3RGHZszPs7XhrLWkFRa3qPIym0maomncMczGLr_9YfKCVHyd9arxmRFh2BebuIBHABJu9rZzYA-AEAaAGAoAHo-LgQKgHjs4bqAeT2BuoB-6WsQKoB_6esQKoB6SjsQKoB9XJG6gHpr4bqAfz0RuoB5bYG6gHqpuxAqgH35-xAtgHAdIIBwiAYRABGB2xCYTQqgOewNJ8gAoDigrKAWh0dHBzOi8vaW8uY2xpY2tndWFyZC5jb20vdC9jSEp2ZEdWamRHOXkvOXVwRGtBM0U_Y2c9dHJhY2sma3c9Jm53PWQmY3A9MTEyMzMzNjE0NjkmYWc9MTI2NzYxMDAwNjAzJmFkPTU0NzE3ODAyOTM0OSZrZD1hdWQtODQ5NjQ2ODg4MDEyJmR2PWMmbXQ9JnBsPXd3dy5idXNpbmVzc2luc2lkZXIuaW4mcmQ9Njc4NTEwMTI1NTgxNTA1MzA1JnRnPXtscHVybH2YCwHICwHgCwG4DAHYEw3QFQGYFgH4FgGAFwE&amp;ae=1&amp;num=1&amp;cid=CAASJORoDxxZ5TdRQwyfib2OEMYaSxM5FIRhKErlLPkcpqHoGomNhw&amp;sig=AOD64_29PJhzQIGNiSYDW69cKGcz-5sKLQ&amp;client=ca-pub-2230723027927371&amp;nx=CLICK_X&amp;ny=CLICK_Y&amp;nb=2&amp;adurl=https://www.moengage.com/casestudy/gaana-case-study/%3Futm_source%3Dgoogle%26utm_medium%3Dpaid%26utm_campaign%3Dgd-india-rm-demo-li%26campaignid%3D11233361469%26adgroupid%3D126761000603%26adid%3D547178029349%26utm_campaign%3DGD-India-RM-Demo-LI%26utm_source%3Dadwords%26utm_term%3D%26utm_medium%3Dcpc%26hsa_net%3Dadwords%26hsa_mt%3D%26hsa_ver%3D3%26hsa_kw%3D%26hsa_ad%3D547178029349%26hsa_src%3Dd%26hsa_grp%3D126761000603%26hsa_cam%3D11233361469%26hsa_tgt%3Daud-849646888012%26hsa_acc%3D7352429802%26gclid%3DEAIaIQobChMIqP2jydTc9wIVEAlyCh0c_Q-CEAEYASAAEgLbKvD_BwE"
+            id="aw0" on="tap:exit-api.exit(target='landingPage',_googClickLocation='2')" target="_blank">
+            <amp-img alt=""
+                class="img_ad ads i-amphtml-layout-fixed i-amphtml-layout-size-defined i-amphtml-element i-amphtml-built i-amphtml-layout"
+                id="ads" height="280" i-amphtml-layout="fixed" i-amphtml-ssr=""
+                src="https://tpc.googlesyndication.com/simgad/3622723841736656957?sqp=4sqPyQQrQikqJwhfEAEdAAC0QiABKAEwCTgDQPCTCUgAUAFYAWBfcAJ4AcUBLbKdPg&amp;rs=AOga4ql3_U8pu1JsK9utsQh5W4vq12z1Uw"
+                style="width:336px;height:280px;" width="336"><img alt=""
+                    class="i-amphtml-fill-content i-amphtml-replaced-content ads" id="ads" decoding="async"
+                    src="https://tpc.googlesyndication.com/simgad/3622723841736656957?sqp=4sqPyQQrQikqJwhfEAEdAAC0QiABKAEwCTgDQPCTCUgAUAFYAWBfcAJ4AcUBLbKdPg&amp;rs=AOga4ql3_U8pu1JsK9utsQh5W4vq12z1Uw">
+            </amp-img>
+        </a>
+    </div>
+
+    <br><br>
+
+
+    <!-- ADS Element -->
+    <br><br>
+
+    <div>
+        <a href="https://www.googleadservices.com/pagead/aclk?sa=L&amp;ai=C9fQIp2d-YuiNNJCSyAOc-r-QCIPkl4hpt8yU0b8O2tkeEAEg7YL4H2Dl0uSDqA6gAcWdn78DyAEC4AIAqAMByAMIqgT4Ak_QN7SpojrGYLp4kOdiC-w2Fo1md8AlsW5bfjKQ5TxyDGvw-Rh82z_QpMGJ_glpfLJV64Tirid6wPP4tzGzuXLooUEj9LLfzeOdzlkWIRiwWRuYrbph_EQlAUT6Bq8sx1PcQXQuW4hEUcwKwLw9mb6IbdeQM3-97IaX3ObtlTBxy4Dck8frBAXb2OSCUGTuHmfkPyZe9_t0kHmdy0DCjQGTgy1W1POE4NaTQv2A-NLQS1BPEt9OFZ7PM54aHcvklguyqtNE6-g9CcX_nsmVew2tv_sqhHUD7XqZb_OXtnE2WnIUEH7cOLbDss0fl7m8lbCyQs_v5Er7uqHRQCu-HNu8Ybrn-wEXiyG3vaGRwKJMb3h5CtXAtmFbrqRtKkydnkIsoeEtTcka-RPD6yHWjBsB4caIBenXfTNveIsjexlB9yjscgKCUAQ3RGHZszPs7XhrLWkFRa3qPIym0maomncMczGLr_9YfKCVHyd9arxmRFh2BebuIBHABJu9rZzYA-AEAaAGAoAHo-LgQKgHjs4bqAeT2BuoB-6WsQKoB_6esQKoB6SjsQKoB9XJG6gHpr4bqAfz0RuoB5bYG6gHqpuxAqgH35-xAtgHAdIIBwiAYRABGB2xCYTQqgOewNJ8gAoDigrKAWh0dHBzOi8vaW8uY2xpY2tndWFyZC5jb20vdC9jSEp2ZEdWamRHOXkvOXVwRGtBM0U_Y2c9dHJhY2sma3c9Jm53PWQmY3A9MTEyMzMzNjE0NjkmYWc9MTI2NzYxMDAwNjAzJmFkPTU0NzE3ODAyOTM0OSZrZD1hdWQtODQ5NjQ2ODg4MDEyJmR2PWMmbXQ9JnBsPXd3dy5idXNpbmVzc2luc2lkZXIuaW4mcmQ9Njc4NTEwMTI1NTgxNTA1MzA1JnRnPXtscHVybH2YCwHICwHgCwG4DAHYEw3QFQGYFgH4FgGAFwE&amp;ae=1&amp;num=1&amp;cid=CAASJORoDxxZ5TdRQwyfib2OEMYaSxM5FIRhKErlLPkcpqHoGomNhw&amp;sig=AOD64_29PJhzQIGNiSYDW69cKGcz-5sKLQ&amp;client=ca-pub-2230723027927371&amp;nx=CLICK_X&amp;ny=CLICK_Y&amp;nb=2&amp;adurl=https://www.moengage.com/casestudy/gaana-case-study/%3Futm_source%3Dgoogle%26utm_medium%3Dpaid%26utm_campaign%3Dgd-india-rm-demo-li%26campaignid%3D11233361469%26adgroupid%3D126761000603%26adid%3D547178029349%26utm_campaign%3DGD-India-RM-Demo-LI%26utm_source%3Dadwords%26utm_term%3D%26utm_medium%3Dcpc%26hsa_net%3Dadwords%26hsa_mt%3D%26hsa_ver%3D3%26hsa_kw%3D%26hsa_ad%3D547178029349%26hsa_src%3Dd%26hsa_grp%3D126761000603%26hsa_cam%3D11233361469%26hsa_tgt%3Daud-849646888012%26hsa_acc%3D7352429802%26gclid%3DEAIaIQobChMIqP2jydTc9wIVEAlyCh0c_Q-CEAEYASAAEgLbKvD_BwE"
+            id="aw0" on="tap:exit-api.exit(target='landingPage',_googClickLocation='2')" target="_blank">
+            <amp-img alt=""
+                class="img_ad ads i-amphtml-layout-fixed i-amphtml-layout-size-defined i-amphtml-element i-amphtml-built i-amphtml-layout"
+                id="ads" height="280" i-amphtml-layout="fixed" i-amphtml-ssr=""
+                src="https://tpc.googlesyndication.com/simgad/3622723841736656957?sqp=4sqPyQQrQikqJwhfEAEdAAC0QiABKAEwCTgDQPCTCUgAUAFYAWBfcAJ4AcUBLbKdPg&amp;rs=AOga4ql3_U8pu1JsK9utsQh5W4vq12z1Uw"
+                style="width:336px;height:280px;" width="336"><img alt=""
+                    class="i-amphtml-fill-content i-amphtml-replaced-content ads" id="ads" decoding="async"
+                    src="https://tpc.googlesyndication.com/simgad/3622723841736656957?sqp=4sqPyQQrQikqJwhfEAEdAAC0QiABKAEwCTgDQPCTCUgAUAFYAWBfcAJ4AcUBLbKdPg&amp;rs=AOga4ql3_U8pu1JsK9utsQh5W4vq12z1Uw">
+            </amp-img>
+        </a>
+    </div>
+
+    <br><br>
+
+    <!-- ADS Element -->
+    <br><br>
+
+    <div>
+        <a href="https://www.googleadservices.com/pagead/aclk?sa=L&amp;ai=C9fQIp2d-YuiNNJCSyAOc-r-QCIPkl4hpt8yU0b8O2tkeEAEg7YL4H2Dl0uSDqA6gAcWdn78DyAEC4AIAqAMByAMIqgT4Ak_QN7SpojrGYLp4kOdiC-w2Fo1md8AlsW5bfjKQ5TxyDGvw-Rh82z_QpMGJ_glpfLJV64Tirid6wPP4tzGzuXLooUEj9LLfzeOdzlkWIRiwWRuYrbph_EQlAUT6Bq8sx1PcQXQuW4hEUcwKwLw9mb6IbdeQM3-97IaX3ObtlTBxy4Dck8frBAXb2OSCUGTuHmfkPyZe9_t0kHmdy0DCjQGTgy1W1POE4NaTQv2A-NLQS1BPEt9OFZ7PM54aHcvklguyqtNE6-g9CcX_nsmVew2tv_sqhHUD7XqZb_OXtnE2WnIUEH7cOLbDss0fl7m8lbCyQs_v5Er7uqHRQCu-HNu8Ybrn-wEXiyG3vaGRwKJMb3h5CtXAtmFbrqRtKkydnkIsoeEtTcka-RPD6yHWjBsB4caIBenXfTNveIsjexlB9yjscgKCUAQ3RGHZszPs7XhrLWkFRa3qPIym0maomncMczGLr_9YfKCVHyd9arxmRFh2BebuIBHABJu9rZzYA-AEAaAGAoAHo-LgQKgHjs4bqAeT2BuoB-6WsQKoB_6esQKoB6SjsQKoB9XJG6gHpr4bqAfz0RuoB5bYG6gHqpuxAqgH35-xAtgHAdIIBwiAYRABGB2xCYTQqgOewNJ8gAoDigrKAWh0dHBzOi8vaW8uY2xpY2tndWFyZC5jb20vdC9jSEp2ZEdWamRHOXkvOXVwRGtBM0U_Y2c9dHJhY2sma3c9Jm53PWQmY3A9MTEyMzMzNjE0NjkmYWc9MTI2NzYxMDAwNjAzJmFkPTU0NzE3ODAyOTM0OSZrZD1hdWQtODQ5NjQ2ODg4MDEyJmR2PWMmbXQ9JnBsPXd3dy5idXNpbmVzc2luc2lkZXIuaW4mcmQ9Njc4NTEwMTI1NTgxNTA1MzA1JnRnPXtscHVybH2YCwHICwHgCwG4DAHYEw3QFQGYFgH4FgGAFwE&amp;ae=1&amp;num=1&amp;cid=CAASJORoDxxZ5TdRQwyfib2OEMYaSxM5FIRhKErlLPkcpqHoGomNhw&amp;sig=AOD64_29PJhzQIGNiSYDW69cKGcz-5sKLQ&amp;client=ca-pub-2230723027927371&amp;nx=CLICK_X&amp;ny=CLICK_Y&amp;nb=2&amp;adurl=https://www.moengage.com/casestudy/gaana-case-study/%3Futm_source%3Dgoogle%26utm_medium%3Dpaid%26utm_campaign%3Dgd-india-rm-demo-li%26campaignid%3D11233361469%26adgroupid%3D126761000603%26adid%3D547178029349%26utm_campaign%3DGD-India-RM-Demo-LI%26utm_source%3Dadwords%26utm_term%3D%26utm_medium%3Dcpc%26hsa_net%3Dadwords%26hsa_mt%3D%26hsa_ver%3D3%26hsa_kw%3D%26hsa_ad%3D547178029349%26hsa_src%3Dd%26hsa_grp%3D126761000603%26hsa_cam%3D11233361469%26hsa_tgt%3Daud-849646888012%26hsa_acc%3D7352429802%26gclid%3DEAIaIQobChMIqP2jydTc9wIVEAlyCh0c_Q-CEAEYASAAEgLbKvD_BwE"
+            id="aw0" on="tap:exit-api.exit(target='landingPage',_googClickLocation='2')" target="_blank">
+            <amp-img alt=""
+                class="img_ad ads i-amphtml-layout-fixed i-amphtml-layout-size-defined i-amphtml-element i-amphtml-built i-amphtml-layout"
+                id="ads" height="280" i-amphtml-layout="fixed" i-amphtml-ssr=""
+                src="https://tpc.googlesyndication.com/simgad/3622723841736656957?sqp=4sqPyQQrQikqJwhfEAEdAAC0QiABKAEwCTgDQPCTCUgAUAFYAWBfcAJ4AcUBLbKdPg&amp;rs=AOga4ql3_U8pu1JsK9utsQh5W4vq12z1Uw"
+                style="width:336px;height:280px;" width="336"><img alt=""
+                    class="i-amphtml-fill-content i-amphtml-replaced-content ads" id="ads" decoding="async"
+                    src="https://tpc.googlesyndication.com/simgad/3622723841736656957?sqp=4sqPyQQrQikqJwhfEAEdAAC0QiABKAEwCTgDQPCTCUgAUAFYAWBfcAJ4AcUBLbKdPg&amp;rs=AOga4ql3_U8pu1JsK9utsQh5W4vq12z1Uw">
+            </amp-img>
+        </a>
+    </div>
+
+    <br><br>
+
+
+
+    <center>
+        <amp-youtube class="" id="lastime_video" width="480" height="270" data-videoid="Ft208ORSqiE">
+        </amp-youtube>
+    </center>
+
+    <!-- ADS Element -->
+    <br><br>
+
+    <div>
+        <a href="https://www.googleadservices.com/pagead/aclk?sa=L&amp;ai=C9fQIp2d-YuiNNJCSyAOc-r-QCIPkl4hpt8yU0b8O2tkeEAEg7YL4H2Dl0uSDqA6gAcWdn78DyAEC4AIAqAMByAMIqgT4Ak_QN7SpojrGYLp4kOdiC-w2Fo1md8AlsW5bfjKQ5TxyDGvw-Rh82z_QpMGJ_glpfLJV64Tirid6wPP4tzGzuXLooUEj9LLfzeOdzlkWIRiwWRuYrbph_EQlAUT6Bq8sx1PcQXQuW4hEUcwKwLw9mb6IbdeQM3-97IaX3ObtlTBxy4Dck8frBAXb2OSCUGTuHmfkPyZe9_t0kHmdy0DCjQGTgy1W1POE4NaTQv2A-NLQS1BPEt9OFZ7PM54aHcvklguyqtNE6-g9CcX_nsmVew2tv_sqhHUD7XqZb_OXtnE2WnIUEH7cOLbDss0fl7m8lbCyQs_v5Er7uqHRQCu-HNu8Ybrn-wEXiyG3vaGRwKJMb3h5CtXAtmFbrqRtKkydnkIsoeEtTcka-RPD6yHWjBsB4caIBenXfTNveIsjexlB9yjscgKCUAQ3RGHZszPs7XhrLWkFRa3qPIym0maomncMczGLr_9YfKCVHyd9arxmRFh2BebuIBHABJu9rZzYA-AEAaAGAoAHo-LgQKgHjs4bqAeT2BuoB-6WsQKoB_6esQKoB6SjsQKoB9XJG6gHpr4bqAfz0RuoB5bYG6gHqpuxAqgH35-xAtgHAdIIBwiAYRABGB2xCYTQqgOewNJ8gAoDigrKAWh0dHBzOi8vaW8uY2xpY2tndWFyZC5jb20vdC9jSEp2ZEdWamRHOXkvOXVwRGtBM0U_Y2c9dHJhY2sma3c9Jm53PWQmY3A9MTEyMzMzNjE0NjkmYWc9MTI2NzYxMDAwNjAzJmFkPTU0NzE3ODAyOTM0OSZrZD1hdWQtODQ5NjQ2ODg4MDEyJmR2PWMmbXQ9JnBsPXd3dy5idXNpbmVzc2luc2lkZXIuaW4mcmQ9Njc4NTEwMTI1NTgxNTA1MzA1JnRnPXtscHVybH2YCwHICwHgCwG4DAHYEw3QFQGYFgH4FgGAFwE&amp;ae=1&amp;num=1&amp;cid=CAASJORoDxxZ5TdRQwyfib2OEMYaSxM5FIRhKErlLPkcpqHoGomNhw&amp;sig=AOD64_29PJhzQIGNiSYDW69cKGcz-5sKLQ&amp;client=ca-pub-2230723027927371&amp;nx=CLICK_X&amp;ny=CLICK_Y&amp;nb=2&amp;adurl=https://www.moengage.com/casestudy/gaana-case-study/%3Futm_source%3Dgoogle%26utm_medium%3Dpaid%26utm_campaign%3Dgd-india-rm-demo-li%26campaignid%3D11233361469%26adgroupid%3D126761000603%26adid%3D547178029349%26utm_campaign%3DGD-India-RM-Demo-LI%26utm_source%3Dadwords%26utm_term%3D%26utm_medium%3Dcpc%26hsa_net%3Dadwords%26hsa_mt%3D%26hsa_ver%3D3%26hsa_kw%3D%26hsa_ad%3D547178029349%26hsa_src%3Dd%26hsa_grp%3D126761000603%26hsa_cam%3D11233361469%26hsa_tgt%3Daud-849646888012%26hsa_acc%3D7352429802%26gclid%3DEAIaIQobChMIqP2jydTc9wIVEAlyCh0c_Q-CEAEYASAAEgLbKvD_BwE"
+            id="aw0" on="tap:exit-api.exit(target='landingPage',_googClickLocation='2')" target="_blank">
+            <amp-img alt=""
+                class="img_ad ads i-amphtml-layout-fixed i-amphtml-layout-size-defined i-amphtml-element i-amphtml-built i-amphtml-layout"
+                id="ads" height="280" i-amphtml-layout="fixed" i-amphtml-ssr=""
+                src="https://tpc.googlesyndication.com/simgad/3622723841736656957?sqp=4sqPyQQrQikqJwhfEAEdAAC0QiABKAEwCTgDQPCTCUgAUAFYAWBfcAJ4AcUBLbKdPg&amp;rs=AOga4ql3_U8pu1JsK9utsQh5W4vq12z1Uw"
+                style="width:336px;height:280px;" width="336"><img alt=""
+                    class="i-amphtml-fill-content i-amphtml-replaced-content ads" id="ads" decoding="async"
+                    src="https://tpc.googlesyndication.com/simgad/3622723841736656957?sqp=4sqPyQQrQikqJwhfEAEdAAC0QiABKAEwCTgDQPCTCUgAUAFYAWBfcAJ4AcUBLbKdPg&amp;rs=AOga4ql3_U8pu1JsK9utsQh5W4vq12z1Uw">
+            </amp-img>
+        </a>
+    </div>
+
+    <br><br>
+
+
+    <!-- ADS Element -->
+    <br><br>
+
+    <div>
+        <a href="https://www.googleadservices.com/pagead/aclk?sa=L&amp;ai=C9fQIp2d-YuiNNJCSyAOc-r-QCIPkl4hpt8yU0b8O2tkeEAEg7YL4H2Dl0uSDqA6gAcWdn78DyAEC4AIAqAMByAMIqgT4Ak_QN7SpojrGYLp4kOdiC-w2Fo1md8AlsW5bfjKQ5TxyDGvw-Rh82z_QpMGJ_glpfLJV64Tirid6wPP4tzGzuXLooUEj9LLfzeOdzlkWIRiwWRuYrbph_EQlAUT6Bq8sx1PcQXQuW4hEUcwKwLw9mb6IbdeQM3-97IaX3ObtlTBxy4Dck8frBAXb2OSCUGTuHmfkPyZe9_t0kHmdy0DCjQGTgy1W1POE4NaTQv2A-NLQS1BPEt9OFZ7PM54aHcvklguyqtNE6-g9CcX_nsmVew2tv_sqhHUD7XqZb_OXtnE2WnIUEH7cOLbDss0fl7m8lbCyQs_v5Er7uqHRQCu-HNu8Ybrn-wEXiyG3vaGRwKJMb3h5CtXAtmFbrqRtKkydnkIsoeEtTcka-RPD6yHWjBsB4caIBenXfTNveIsjexlB9yjscgKCUAQ3RGHZszPs7XhrLWkFRa3qPIym0maomncMczGLr_9YfKCVHyd9arxmRFh2BebuIBHABJu9rZzYA-AEAaAGAoAHo-LgQKgHjs4bqAeT2BuoB-6WsQKoB_6esQKoB6SjsQKoB9XJG6gHpr4bqAfz0RuoB5bYG6gHqpuxAqgH35-xAtgHAdIIBwiAYRABGB2xCYTQqgOewNJ8gAoDigrKAWh0dHBzOi8vaW8uY2xpY2tndWFyZC5jb20vdC9jSEp2ZEdWamRHOXkvOXVwRGtBM0U_Y2c9dHJhY2sma3c9Jm53PWQmY3A9MTEyMzMzNjE0NjkmYWc9MTI2NzYxMDAwNjAzJmFkPTU0NzE3ODAyOTM0OSZrZD1hdWQtODQ5NjQ2ODg4MDEyJmR2PWMmbXQ9JnBsPXd3dy5idXNpbmVzc2luc2lkZXIuaW4mcmQ9Njc4NTEwMTI1NTgxNTA1MzA1JnRnPXtscHVybH2YCwHICwHgCwG4DAHYEw3QFQGYFgH4FgGAFwE&amp;ae=1&amp;num=1&amp;cid=CAASJORoDxxZ5TdRQwyfib2OEMYaSxM5FIRhKErlLPkcpqHoGomNhw&amp;sig=AOD64_29PJhzQIGNiSYDW69cKGcz-5sKLQ&amp;client=ca-pub-2230723027927371&amp;nx=CLICK_X&amp;ny=CLICK_Y&amp;nb=2&amp;adurl=https://www.moengage.com/casestudy/gaana-case-study/%3Futm_source%3Dgoogle%26utm_medium%3Dpaid%26utm_campaign%3Dgd-india-rm-demo-li%26campaignid%3D11233361469%26adgroupid%3D126761000603%26adid%3D547178029349%26utm_campaign%3DGD-India-RM-Demo-LI%26utm_source%3Dadwords%26utm_term%3D%26utm_medium%3Dcpc%26hsa_net%3Dadwords%26hsa_mt%3D%26hsa_ver%3D3%26hsa_kw%3D%26hsa_ad%3D547178029349%26hsa_src%3Dd%26hsa_grp%3D126761000603%26hsa_cam%3D11233361469%26hsa_tgt%3Daud-849646888012%26hsa_acc%3D7352429802%26gclid%3DEAIaIQobChMIqP2jydTc9wIVEAlyCh0c_Q-CEAEYASAAEgLbKvD_BwE"
+            id="aw0" on="tap:exit-api.exit(target='landingPage',_googClickLocation='2')" target="_blank">
+            <amp-img alt=""
+                class="img_ad ads i-amphtml-layout-fixed i-amphtml-layout-size-defined i-amphtml-element i-amphtml-built i-amphtml-layout"
+                id="ads" height="280" i-amphtml-layout="fixed" i-amphtml-ssr=""
+                src="https://tpc.googlesyndication.com/simgad/3622723841736656957?sqp=4sqPyQQrQikqJwhfEAEdAAC0QiABKAEwCTgDQPCTCUgAUAFYAWBfcAJ4AcUBLbKdPg&amp;rs=AOga4ql3_U8pu1JsK9utsQh5W4vq12z1Uw"
+                style="width:336px;height:280px;" width="336"><img alt=""
+                    class="i-amphtml-fill-content i-amphtml-replaced-content ads" id="ads" decoding="async"
+                    src="https://tpc.googlesyndication.com/simgad/3622723841736656957?sqp=4sqPyQQrQikqJwhfEAEdAAC0QiABKAEwCTgDQPCTCUgAUAFYAWBfcAJ4AcUBLbKdPg&amp;rs=AOga4ql3_U8pu1JsK9utsQh5W4vq12z1Uw">
+            </amp-img>
+        </a>
+    </div>
+
+    <br><br>
+    <div>
+        <amp-ad id="adrender" type="a9" data-amzn_assoc_ad_mode="auto"
+            data-divid="amzn-assoc-ad-fe746097-f142-4f8d-8dfb-45ec747632e5" data-recomtype="async"
+            data-adinstanceid="fe746097-f142-4f8d-8dfb-45ec747632e5" width="300" height="250" data-aax_size="300x250"
+            data-aax_pubname="test123" data-aax_src="302">
+        </amp-ad>
+
+
+        <amp-embed type="taboola" width="400" height="300" layout="responsive" data-publisher="amp-demo"
+            data-mode="thumbnails-a" data-placement="Ads Example" data-article="auto">
+        </amp-embed>
+    </div>
+</body>
+
+</html>
