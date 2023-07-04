@@ -225,59 +225,162 @@
         </amp-youtube>
     </center>
 
+    
+    <!-- Normal Page view configuration: -->
+    <!-- <amp-analytics type="gtag" data-credentials="include">
+        <script type="application/json">
+        {
+          "vars" : {
+            "gtag_id": "G-2Y1PP6JNH1",
+            "config" : {
+              "G-2Y1PP6JNH1": { }
+            }
+          }
+        }   
+        </script>
+        </amp-analytics> -->
 
+
+    <!-- Pageview with the Parameters -->
     <amp-analytics type="gtag" data-credentials="include">
         <script type="application/json">
         {
           "vars" : {
             "gtag_id": "G-2Y1PP6JNH1",
             "config" : {
-              "G-2Y1PP6JNH1": { 
-                "client_ID": "CLIENT_ID(_ga).",
-                "url": "${ampdocUrl}",
-                "title": "${title}",
-                "host_name": "AMPDOC_HOST",
-                "linker": { "domains": ["https://gtmanalytics-634b6.web.app/"] }
+              "G-2Y1PP6JNH1": {  
+              "client_ID": "CLIENT_ID(_ga).",
+              "page_url": "${ampdocUrl}",
+              "title": "${title}",
+              "amp_host_name": "AMPDOC_HOST"
+            }
+            }
+          }
+        }
+        </script>
+        </amp-analytics>
+
+
+    <!-- Click Event Tracking Implementation -->
+    <amp-analytics type="gtag" data-credentials="include">
+            <script type="application/json">
+            {
+                "triggers": {
+                  "button": {
+                    "selector": ".Link1",
+                    "on": "click",
+                    "vars": {
+                      "event_name": "sidebar_click",
+                      "eventAction": "clicked",
+                      "client_ID": "CLIENT_ID(_ga).",
+                      "pagepath": "${sourcePath}",
+                      "send_to": ["G-2Y1PP6JNH1"]
+                    }
+                  }
                 }
             }
-        },
+        </script>
+        </amp-analytics>
+
+
+    <!-- Scroll Tracking Implementation -->
+    <amp-analytics type="gtag" data-credentials="include">
+            <script type="application/json">
+            {
+                "triggers": {
+                    "scrollTracking": {
+                        "on": "scroll",
+                        "vars": {
+                            "event_name": "scroll",
+                            "percent_scrolled": "${verticalScrollBoundary}%",
+                            "eventAction": "GA4_Scrolling",
+                            "client_ID": "CLIENT_ID(_ga).",
+                            "send_to": ["G-2Y1PP6JNH1"]
+                        },
+                        "scrollSpec": {
+                            "verticalBoundaries": [25, 50, 75, 100],
+                            "horizontalBoundaries": [],
+                            "useInitialPageSize": false
+                        }
+                    }
+                    }
+                  }
+        </script>
+        </amp-analytics>
+
+
+    <!-- Page load Tracking Implementation -->
+    <amp-analytics type="gtag" data-credentials="include">
+        <script type="application/json">
+        {
             "triggers": {
-              "button": {
-                "selector": [".Link1", ".cta_click"],
-                "on": "click",
+
+                "pageLoaded": {
+                "on": "ini-load",
                 "vars": {
-                  "event_name": "sidebar_click",
-                  "eventAction": "clicked",
-                  "client_ID": "CLIENT_ID(_ga).",
-                  "nextUrl": "${canonicalUrl}"
+                    "event_name": "page_is_fully_loaded",
+                    "client_ID": "CLIENT_ID(_ga).",
+                    "page_load_time": "PAGE_LOAD_TIME",
+                    "send_to": ["G-2Y1PP6JNH1"]
+                    }
                 }
-              },
-              "scrollTracking": {
-                "on": "scroll",
+            }    
+        }   
+    </script>
+    </amp-analytics>
+
+    <!-- Hidden page - Observation - It is not working -->
+    <amp-analytics type="gtag" data-credentials="include">
+        <script type="application/json">
+        {
+            "triggers": {
+                "pageHidden": {
+                "on": "hidden",
                 "vars": {
-                    "event_name": "new_scroll",
-                    "percent_scrolled": "${verticalScrollBoundary}%",
-                    "eventAction": "GA4_Scrolling",
-                    "client_ID": "CLIENT_ID(_ga)."
-                },
-                "scrollSpec": {
-                    "verticalBoundaries": [25, 50, 75, 100],
-                    "horizontalBoundaries": [],
-                    "useInitialPageSize": false
-                }
-            },
-            "renderstart": 
-                    {
-                      "on": "render-start",
-                      "selector": "#adrender",
-                      "vars": 
-                      {
-                        "event_name": "ads_loaded",
-                        "eventAction": "ads-Rendering Method",
-                        "client_ID": "CLIENT_ID(_ga)."
-                        
-                      }
+                    "event_name": "page_is_hidden",
+                    "client_ID": "CLIENT_ID(_ga).",
+                    "send_to": ["G-2Y1PP6JNH1"]
                     },
+                    "visibilitySpec": {
+                      "selector": "body",
+                      "visiblePercentageMin": 20,
+                      "totalTimeMin": 3000
+                    }
+                }
+            }    
+        }   
+    </script>
+    </amp-analytics>
+
+
+    <!-- Ads Render Tracking Implementation -->
+    <amp-analytics type="gtag" data-credentials="include">
+        <script type="application/json">
+        {
+            "triggers": {
+                "renderstart": 
+                        {
+                          "on": "render-start",
+                          "selector": "#adrender",
+                          "vars": 
+                          {
+                            "event_name": "ads_loaded",
+                            "eventAction": "ads-Rendering Method",
+                            "client_ID": "CLIENT_ID(_ga).",
+                            "send_to": ["G-2Y1PP6JNH1"]    
+                          }
+                        }
+                }
+              }
+    </script>
+    </amp-analytics>
+
+
+    <!-- YouTube Video Tracking Implementation -->
+    <amp-analytics type="gtag" data-credentials="include">
+        <script type="application/json">
+            {
+                "triggers": {
                     "videoPlayEvent": {
                         "on": "video-play",
                         "vars": {
@@ -290,10 +393,11 @@
                             "video_playedTotal6": "${playedTotal}",
                             "video_state7": "${state}",
                             "video_width8": "${width}",
-                            "client_ID": "CLIENT_ID(_ga)."
+                            "client_ID": "CLIENT_ID(_ga).",
+                            "send_to": ["G-2Y1PP6JNH1"]
                         },
-                        "selector": [".video", ".video1"],
-                        "videoSpec": {}
+                        "selector": ".video"
+                        
                     },
                     "videoPauseEvent": {
                         "on": "video-pause",
@@ -307,10 +411,11 @@
                             "video_playedTotal6": "${playedTotal}",
                             "video_state7": "${state}",
                             "video_width8": "${width}",
-                            "client_ID": "CLIENT_ID(_ga)."
+                            "client_ID": "CLIENT_ID(_ga).",
+                            "send_to": ["G-2Y1PP6JNH1"]
                         },
-                        "selector": [".video", ".video1"],
-                        "videoSpec": {}
+                        "selector": ".video"
+                        
                     },
                     "videoEndEvent": {
                         "on": "video-ended",
@@ -324,16 +429,41 @@
                             "video_playedTotal6": "${playedTotal}",
                             "video_state7": "${state}",
                             "video_width8": "${width}",
-                            "client_ID": "CLIENT_ID(_ga)."
+                            "client_ID": "CLIENT_ID(_ga).",
+                            "send_to": ["G-2Y1PP6JNH1"]
                         },
-                        "selector": [".video", ".video1"],
-                        "videoSpec": {}
+                        "selector": ".video"       
                     },
+                    "myVideoSecondsPlayed": {
+                        "on": "video-seconds-played",
+                        "selector": ".video",
+                        "vars": {
+                            "event_name": "video_seconds_played",
+                            "client_ID": "CLIENT_ID(_ga).",
+                            "send_to": ["G-2Y1PP6JNH1"]
+                        },
+                        "selector": ".video",
+                        "videoSpec": {
+                        "interval": 10                          
+                    }
+                }
+            }
+        }
+        </script>
+    </amp-analytics>
+
+
+    <!-- Element visibility Tracking Implementation -->
+    <amp-analytics type="gtag" data-credentials="include">
+        <script type="application/json">
+            {
+                "triggers": {
                     "recomendationsViewed": {
                         "on": "visible",                    
                         "vars": {
                             "event_name": "element_visibility",
-                            "client_ID": "CLIENT_ID(_ga)."
+                            "client_ID": "CLIENT_ID(_ga).",
+                            "send_to": ["G-2Y1PP6JNH1"]
                         },
                         "selector": "#my-lightbox",
                         "visibilitySpec": {
@@ -343,117 +473,271 @@
                             "continuousTimeMin": 200
                         }
              
-                    },
-                    "pageLoaded": {
-                        "on": "ini-load",
-                        "vars": {
-                            "event_name": "page_is_fully_loaded",
-                            "client_ID": "CLIENT_ID(_ga).",
-                            "page_load_time": "PAGE_LOAD_TIME"
-                         }   
-                      },
-                      "pageHidden": {
-                        "on": "hidden",
-                        "selector": "body",
-                        "vars": {
-                          "event_name": "page_is_hidden",
-                          "client_ID": "CLIENT_ID(_ga)."
-                        },
-                        "visibilitySpec": {
-                          "visiblePercentageMin": 20,
-                          "totalTimeMin": 2000
+                    }
+                }
+            }
+
+        </script>
+    </amp-analytics>
+
+
+    <!-- Timer Tracking Implementation -->
+    <amp-analytics type="gtag" data-credentials="include">
+        <script type="application/json">
+            {
+                "triggers": {
+                    "pageTimer": 
+                    {    
+                        "on": "timer",    
+                        "timerSpec": 
+                        {      
+                            "interval": 10,      
+                            "maxTimerLength": 600    
+                        },    
+
+                                "vars": 
+                                {      
+                                    "event_name": "pagetime", 
+                                    "engagetime": "Engaged ${totalEngagedTime}",
+                                    "client_ID": "CLIENT_ID(_ga).",
+                                    "send_to": ["G-2Y1PP6JNH1"]
+                                }           
                         }
-                      },
-                     "ampCarouselChange": {
+                }
+            }
+        </script>
+    </amp-analytics>
+
+
+    <!-- Virtual Pageview Event tracking  -->
+    <amp-analytics type="gtag" data-credentials="include">
+        <script type="application/json">
+            {
+                "triggers": {
+                        "virtualPageview": {
+                            "selector": ".virtual-pageview-2",
+                            "on": "click",
+                            "vars": {
+                                "event_name": "virtualPageview",
+                                "pageurl": "${ampdocUrl}/vpv/btn1",
+                                "page_location": "${ampdocUrl}/vpv/btn1",
+                                "title":"${title}",
+                                "send_to": ["G-2Y1PP6JNH1"]
+                                }
+                            }
+                        }
+             
+            }
+        </script>
+    </amp-analytics>
+
+    <!--  Event tracking  -->
+    <amp-analytics type="gtag" data-credentials="include">
+        <script type="application/json">
+            {
+                "triggers": {
+                    "ampCarouselChange": {
                         "on": "amp-carousel-change",
                         "vars": {
                             "event_name": "carousel-change",
                             "current_slide_number": "${toSlide}",
                             "prev_slide_number": "${fromSlide}",
-                            "client_ID": "CLIENT_ID(_ga)."
+                            "client_ID": "CLIENT_ID(_ga).",
+                            "send_to": ["G-2Y1PP6JNH1"]
                             }
-                        },
-                        "pageTimer": 
-                        {    
-                            "on": "timer",    
-                            "timerSpec": 
-                            {      
-                            "interval": 10,      
-                            "maxTimerLength": 600    
-                            },    
-                            "vars": 
-                            {      
-                                "event_name": "pagetime", 
-                                "engagetime": "Engaged ${totalEngagedTime}",
-                                "url": "${ampdocUrl}"
-                            }
-                                
-                    },
-                    "virtualPageview": {
-                        "selector": ".virtual-pageview-2",
-                        "on": "click",
-                        "vars": {
-                            "event_name": "virtualPageview",
-                            "pageurl": "${ampdocUrl}/vpv/btn1",
-                            "page_location": "${ampdocUrl}/vpv/btn1",
-                            "title":"${title}",
-                            "pagepath": "${sourcePath}"
                         }
-                    }
-      
+                        }
+             
             }
-          }
         </script>
     </amp-analytics>
 
 
 
 
-    <!-- pv,click,video,ev,ad render, scroll,page loaded, -->
 
+    
 
-
-
-
-    <!-- sample -->
-    <amp-analytics type="gtag" data-credentials="include">
-        <script type="application/json">
-          {
-            "triggers": {
-              "button": {
-                "selector": ".cta_click",
-                "on": "click",
-                "vars": {
-                  "event_name": "Welcome to GA4",
-                  "method": "Google",
-                  "timestamp": "${timestamp}",
-                  "send_to": ["G-2Y1PP6JNH12"]
+        <!-- All events in one Trigger -->
+        <amp-analytics type="gtag" data-credentials="include">
+            <script type="application/json">
+            {
+              "vars" : {
+                "gtag_id": "G-06YPTYXR3K",
+                "config" : {
+                  "G-06YPTYXR3K": {  
+                    "client_ID": "CLIENT_ID(_ga).",
+                    "url": "${ampdocUrl}",
+                    "title": "${title}",
+                    "host_name": "AMPDOC_HOST",
+                    "linker": { "domains": ["https://gtmanalytics-634b6.web.app/"] }
+                  }
+                }
+            },
+                "triggers": {
+                  "button": {
+                    "selector": ".cta_click",
+                    "on": "click",
+                    "vars": {
+                      "event_name": "sidebar_click",
+                      "eventAction": "clicked",
+                      "client_ID": "CLIENT_ID(_ga).",
+                      "pagepath": "${sourcePath}"
+                    }
+                  },
+                  "scrollTracking": {
+                    "on": "scroll",
+                    "vars": {
+                        "event_name": "new_scroll",
+                        "percent_scrolled": "${verticalScrollBoundary}%",
+                        "eventAction": "GA4_Scrolling",
+                        "client_ID": "CLIENT_ID(_ga)."
+                    },
+                    "scrollSpec": {
+                        "verticalBoundaries": [25, 50, 75, 100],
+                        "horizontalBoundaries": [],
+                        "useInitialPageSize": false
+                    }
+                },
+                "renderstart": 
+                        {
+                          "on": "render-start",
+                          "selector": "#adrender",
+                          "vars": 
+                          {
+                            "event_name": "ads_loaded",
+                            "eventAction": "ads-Rendering Method",
+                            "client_ID": "CLIENT_ID(_ga)."
+                            
+                          }
+                        },
+                        "videoPlayEvent": {
+                            "on": "video-play",
+                            "vars": {
+                                "event_name": "video_played",
+                                "video_autoplay1": "${autoplay}",
+                                "video_currentTime2": "${currentTime}",
+                                "video_duration3": "${duration}",
+                                "video_height4": "${height}",
+                                "video_id5": "${id}",
+                                "video_playedTotal6": "${playedTotal}",
+                                "video_state7": "${state}",
+                                "video_width8": "${width}",
+                                "client_ID": "CLIENT_ID(_ga)."
+                            },
+                            "selector": [".video", ".video1"],
+                            "videoSpec": {}
+                        },
+                        "videoPauseEvent": {
+                            "on": "video-pause",
+                            "vars": {
+                                "event_name": "video_paused",
+                                "video_autoplay1": "${autoplay}",
+                                "video_currentTime2": "${currentTime}",
+                                "video_duration3": "${duration}",
+                                "video_height4": "${height}",
+                                "video_id5": "${id}",
+                                "video_playedTotal6": "${playedTotal}",
+                                "video_state7": "${state}",
+                                "video_width8": "${width}",
+                                "client_ID": "CLIENT_ID(_ga)."
+                            },
+                            "selector": [".video", ".video1"],
+                            "videoSpec": {}
+                        },
+                        "videoEndEvent": {
+                            "on": "video-ended",
+                            "vars": {
+                                "event_name": "video_ended",
+                                "video_autoplay1": "${autoplay}",
+                                "video_currentTime2": "${currentTime}",
+                                "video_duration3": "${duration}",
+                                "video_height4": "${height}",
+                                "video_id5": "${id}",
+                                "video_playedTotal6": "${playedTotal}",
+                                "video_state7": "${state}",
+                                "video_width8": "${width}",
+                                "client_ID": "CLIENT_ID(_ga)."
+                            },
+                            "selector": [".video", ".video1"],
+                            "videoSpec": {}
+                        },
+                        "recomendationsViewed": {
+                            "on": "visible",                    
+                            "vars": {
+                                "event_name": "element_visibility",
+                                "client_ID": "CLIENT_ID(_ga)."
+                            },
+                            "selector": "#my-lightbox",
+                            "visibilitySpec": {
+                                "waitFor": "ini-load",
+                                "visiblePercentageMin": 50,
+                                "totalTimeMin": 500,
+                                "continuousTimeMin": 200
+                            }
+                 
+                        },
+                        "pageLoaded": {
+                            "on": "ini-load",
+                            "vars": {
+                                "event_name": "page_is_fully_loaded",
+                                "client_ID": "CLIENT_ID(_ga).",
+                                "page_load_time": "PAGE_LOAD_TIME"
+                             }   
+                          },
+                          "pageHidden": {
+                            "on": "hidden",
+                            "selector": "body",
+                            "vars": {
+                              "event_name": "page_is_hidden",
+                              "client_ID": "CLIENT_ID(_ga)."
+                            },
+                            "visibilitySpec": {
+                              "visiblePercentageMin": 20,
+                              "totalTimeMin": 2000
+                            }
+                          },
+                         "ampCarouselChange": {
+                            "on": "amp-carousel-change",
+                            "vars": {
+                                "event_name": "carousel-change",
+                                "current_slide_number": "${toSlide}",
+                                "prev_slide_number": "${fromSlide}",
+                                "client_ID": "CLIENT_ID(_ga)."
+                                }
+                            },
+                            "pageTimer": 
+                            {    
+                                "on": "timer",    
+                                "timerSpec": 
+                                {      
+                                "interval": 10,      
+                                "maxTimerLength": 600    
+                                },    
+                                "vars": 
+                                {      
+                                    "event_name": "pagetime", 
+                                    "engagetime": "Engaged ${totalEngagedTime}",
+                                    "url": "${ampdocUrl}"
+                                }
+                                    
+                        },
+                        "virtualPageview": {
+                            "selector": ".virtual-pageview-2",
+                            "on": "click",
+                            "vars": {
+                                "event_name": "virtualPageview",
+                                "pageurl": "${ampdocUrl}/vpv/btn1",
+                                "page_location": "${ampdocUrl}/vpv/btn1",
+                                "title":"${title}",
+                                "pagepath": "${sourcePath}"
+                            }
+                        }
+          
                 }
               }
-            }
-          }
-        </script>
-    </amp-analytics>
-
-
-
-
-
-
-    <!-- <amp-iframe width="500" height="281" class="amp-iframe-video" title="Netflix House of Cards branding: The Stack" layout="responsive" sandbox="allow-scripts allow-same-origin allow-popups" allowfullscreen frameborder="0" src="https://player.vimeo.com/video/140261016">
-        <amp-img layout="fill" src="https://i.vimeocdn.com/video/536538454_640.webp" placeholder></amp-img>
-      </amp-iframe> -->
-
-    <!-- 
-    <amp-iframe id="amp-iframe" title="Cute dog video" width="500" height="281" layout="responsive"
-        sandbox="allow-scripts allow-same-origin allow-popups" allowfullscreen frameborder="0"
-        src="https://player.vimeo.com/video/183849543" [src]="myIframeUrl">
-    </amp-iframe>
-    <button on="tap:AMP.setState({ myIframeUrl: 'https://player.vimeo.com/video/185199565' })">Change src</button>
- -->
-
-
-
+            </script>
+        </amp-analytics>
 
 
     <!-- ADS Element 16-May -->
