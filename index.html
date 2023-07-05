@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="amp-google-client-id-api" content="googleanalytics">
     <script async src="https://cdn.ampproject.org/v0.js"></script>
     <title>Hello, AMPs</title>
     <script async custom-element="amp-video-iframe"
@@ -564,13 +565,13 @@
             {
               "vars" : {
                 "gtag_id": "G-06YPTYXR3K",
+                "linker": { "domains": ["https://gtmanalytics-634b6.web.app/"] },
                 "config" : {
                   "G-06YPTYXR3K": {  
                     "client_ID": "CLIENT_ID(_ga).",
                     "url": "${ampdocUrl}",
                     "title": "${title}",
-                    "host_name": "AMPDOC_HOST",
-                    "linker": { "domains": ["https://gtmanalytics-634b6.web.app/"] }
+                    "host_name": "AMPDOC_HOST"
                   }
                 }
             },
