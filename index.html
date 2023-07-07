@@ -501,7 +501,6 @@
                             "on": "click",
                             "vars": {
                                 "event_name": "virtualPageview",
-                                "pageurl": "${ampdocUrl}/vpv/btn1",
                                 "page_location": "${ampdocUrl}/vpv/btn1",
                                 "title":"${title}",
                                 "send_to": ["G-2Y1PP6JNH1"]
@@ -541,7 +540,9 @@
     
 
         <!-- All events in one Trigger -->
-        <amp-analytics type="gtag" data-credentials="include">
+        
+        <!-- All events in one Trigger -->
+        <!-- <amp-analytics type="gtag" data-credentials="include">
             <script type="application/json">
             {
               "vars" : {
@@ -552,7 +553,8 @@
                     "client_ID": "CLIENT_ID(_ga).",
                     "url": "${ampdocUrl}",
                     "title": "${title}",
-                    "host_name": "AMPDOC_HOST"
+                    "host_name": "AMPDOC_HOST",
+                    "hello": "hellllo"
                   }
                 }
             },
@@ -709,7 +711,6 @@
                             "on": "click",
                             "vars": {
                                 "event_name": "virtualPageview",
-                                "pageurl": "${ampdocUrl}/vpv/btn1",
                                 "page_location": "${ampdocUrl}/vpv/btn1",
                                 "title":"${title}",
                                 "pagepath": "${sourcePath}"
@@ -719,7 +720,11 @@
                 }
               }
             </script>
-        </amp-analytics>
+        </amp-analytics> -->
+
+
+
+
 
 
     <!-- ADS Element 16-May -->
